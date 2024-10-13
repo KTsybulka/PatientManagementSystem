@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Patient</title>
+
+    <link th:href="@{style/css/style.css}" rel="stylesheet">
+</head>
+<body>
+
+<div align="center">
+    <h1>Add Patient</h1>
+
+    <form action="#" th:action="@{/addPatient}" th:object="${patient}" method="post">
+        <table border="3">
+            <tr>
+                <td>ID</td>
+                <td><input type="number" th:field="*{id}" placeholder="patient id"></td>
+                <td th:if="${#fields.hasErrors('id')}" th:errors="*{id}"></td>
+            </tr>
+
+            <tr>
+                <td>Name</td>
+                <td><input type="text" th:field="*{name}" placeholder="patient name"></td>
+                <td th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></td>
+            </tr>
+
+            <tr>
+                <td>Age</td>
+                <td><input type="number" th:field="*{age}" placeholder="patient age"></td>
+                <td th:if="${#fields.hasErrors('age')}" th:errors="*{age}"></td>
+            </tr>
+            <tr>
+                <td>Gender</td>
+                <td><input type="text" th:field="*{gender}" placeholder="patient gender"></td>
+                <td th:if="${#fields.hasErrors('gender')}" th:errors="*{gender}"></td>
+            </tr>
+            <tr>
+                <td>Email</td>
+                <td><input type="email" th:field="*{email}" placeholder="patient email"></td>
+                <td th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></td>
+            </tr>
+            <tr>
+                <td>City</td>
+                <td><input type="text" th:field="*{city}" placeholder="patient city"></td>
+                <td th:if="${#fields.hasErrors('city')}" th:errors="*{city}"></td>
+            </tr>
+            <tr>
+                <td>Date Of Birth</td>
+<!--                <td><input type="date" th:field="*{dateOfBirth}" placeholder="patient date of birth"></td>-->
+                <td><input type="text" th:field="*{dateOfBirth}" placeholder="yyyy/MM/dd" pattern="\d{4}/\d{2}/\d{2}"></td>
+                <td th:if="${#fields.hasErrors('dateOfBirth')}" th:errors="*{dateOfBirth}"></td>
+            </tr>
+
+            <tr>
+                <td></td>
+                <td><input type="submit" value="Add"></td>
+            </tr>
+
+        </table>
+    </form>
+
+</div>
+
+</body>
+</html>

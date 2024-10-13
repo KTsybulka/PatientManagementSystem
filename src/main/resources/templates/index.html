@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Patient Management System</title>
+
+    <link th:href="@{style/css/style.css}" rel="stylesheet">
+</head>
+<body>
+
+<div align="center">
+    <h1 >Patient Management System</h1>
+    <h2>Patient List</h2>
+
+    <a th:href="@{/showAddPatientForm}">Add Patient</a><br> <br>
+<!--    <a th:href="@{/showAddEmployeeForm}">Add Employee</a> <br> <br>-->
+
+
+    <form action="#" th:action="@{/searchPatientById}" method="get">
+        <label>Search Patient By ID</label>
+        <input type="number" name="patientId">
+        <input type="submit" value="Search by ID">
+    </form></br></br>
+
+
+    <form action="#" th:action="@{/searchPatientByName}" method="get">
+        <label>Search Patient By Name</label>
+        <input type="text" name="patientName">
+        <input type="submit" value="Search By Name">
+    </form></br></br>
+
+    <form action="#" th:action="@{/searchPatientByNativeQuery}" method="get">
+        <label>Get all the patients over 30 years old</label>
+        <input type="submit" value="Search">
+    </form></br></br>
+
+
+
+    <table border="5">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Gender</th>
+                <th>Email</th>
+                <th>City</th>
+                <th>Date Of Birth</th>
+                <th colspan="2">Actions</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr th:each="patient : ${patientList}">
+                <td th:text="${patient.id}"></td>
+                <td th:text="${patient.name}"></td>
+                <td th:text="${patient.age}"></td>
+                <td th:text="${patient.gender}"></td>
+                <td th:text="${patient.email}"></td>
+                <td th:text="${patient.city}"></td>
+                <td th:text="${#dates.format(patient.dateOfBirth, 'yyyy/MM/dd')}"></td>
+                <td><a th:href="@{/deletePatient/{id}(id=${patient.id})}">Delete</a></td>
+                <td><a th:href="@{/showUpdateForm/{id}(id=${patient.id})}">Update</a></td>
+
+            </tr>
+        </tbody>
+    </table><br> <br>
+
+    <a th:href="@{/}">Show all patients</a><br> <br>
+
+</div>
+</body>
+</html>
